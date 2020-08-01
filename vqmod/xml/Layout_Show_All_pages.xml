@@ -1,0 +1,69 @@
+<modification>
+    <id>Layout All Pages</id>
+    <version>1.0.0</version>
+    <vqmver>2.6.1</vqmver>
+    <author>ct47_henry@yahoo.com.hk</author>
+    <file name="/admin/controller/design/layout.php">
+        <operation>
+            <search position="after">
+                <![CDATA[
+				
+                public function index() {
+				
+                ]]>
+            </search>
+            <add>
+                <![CDATA[
+                 $this->check_All_Pages();
+                ]]>
+            </add>
+        </operation>
+    </file>
+	
+    <file name="/admin/controller/design/layout.php">
+        <operation>
+            <search position="before">
+                <![CDATA[
+				
+                public function add() {
+				
+                ]]>
+            </search>
+            <add>
+                <![CDATA[
+                public function check_All_Pages()
+                {
+                    $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "layout
+                        WHERE LOWER(name) = 'all pages' LIMIT 1");
+					if ($query->num_rows) {
+					}else{
+                        $sql = "INSERT INTO ".DB_PREFIX."layout SET `name`='All Pages'";
+						$query = $this->db->query( $sql );
+					}
+                }
+                ]]>
+            </add>
+        </operation>
+    </file>	
+	    
+    <file name="/catalog/model/design/layout.php">
+        <operation>
+            <search position="replace">
+                <![CDATA[
+                $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "layout_module WHERE layout_id = '" . (int)$layout_id . "' AND position = '" . $this->db->escape($position) . "' ORDER BY sort_order");
+                ]]>
+            </search>
+            <add>
+                <![CDATA[
+                    $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "layout
+                        WHERE LOWER(name) = 'all pages' LIMIT 1");
+                    if ($query->num_rows) {
+                        $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "layout_module WHERE (layout_id = '" . (int)$layout_id . "' OR layout_id = '" . (int)$query->row['layout_id'] . "') AND position = '" . $this->db->escape($position) . "' ORDER BY sort_order");
+                    } else {
+						$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "layout_module WHERE layout_id = '" . (int)$layout_id . "' AND position = '" . $this->db->escape($position) . "' ORDER BY sort_order");
+                    }
+                ]]>
+            </add>
+        </operation>
+    </file>
+</modification>

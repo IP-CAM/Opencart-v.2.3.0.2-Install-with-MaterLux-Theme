@@ -1,0 +1,25 @@
+<modification>
+	<id>Automatic Relate</id>
+	<version>1.0.1</version>
+	<vqmver>2.1</vqmver>
+	<author>Palcet - maxzon.ru</author>
+	<file name="catalog/model/catalog/product.php">
+		<operation>
+			<search position="after">
+			<![CDATA[
+			$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "product_related pr LEFT JOIN " . DB_PREFIX . "product p ON (pr.related_id = p.product_id) LEFT JOIN " . DB_PREFIX . "product_to_store p2s ON (p.product_id = p2s.product_id) WHERE pr.product_id = '" . (int)$product_id . "' AND p.status = '1' AND p.date_available <= NOW() AND p2s.store_id = '" . (int)$this->config->get('config_store_id') . "'");
+			]]>
+			</search>
+			<add>
+			<![CDATA[	
+			
+			$sql="  select *,p.product_id as related_id  from " . DB_PREFIX . "product p  LEFT JOIN " . DB_PREFIX . "product_to_store p2s ON (p.product_id = p2s.product_id) where p.product_id in   (select product_id from " . DB_PREFIX . "product_to_category  where category_id in  (SELECT category_id FROM " . DB_PREFIX . "product_to_category where product_id=".(int)$product_id."))  AND p.status = '1' AND p.date_available <= NOW() AND p2s.store_id = '" . (int)$this->config->get('config_store_id') . "'ORDER BY RAND() limit 14";
+			
+			$query = $this->db->query($sql);
+			   
+		
+			]]>
+			</add>
+		</operation>
+	</file>
+</modification>

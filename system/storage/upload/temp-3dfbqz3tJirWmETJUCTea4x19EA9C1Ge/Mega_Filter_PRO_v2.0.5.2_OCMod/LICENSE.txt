@@ -1,0 +1,35 @@
+This product has a per-client license, meaning:
+
+If the client is a natural person he can use this on a few his stores (on maximum 3 domains) but only if the owner of those stores is the same person. 
+If the client is a web development firm will need to buy a separate license for each client.
+
+
+Single client license includes:
+
+- 1 year free premium support and updates
+- 1 free installation service
+- You can use this product on 3 domains at the same time
+- You can use this product without a limit of time
+- You can use this product only for your own purpose
+
+- You cannot directly or indirectly license, sub-license, sell, resell, swap this product for other products
+- You cannot extract components or reverse engineer
+- You cannot resell this product as yours
+- You cannot change the name of this product
+- You cannot claim the part or all of the source code as yours.
+
+
+Web development firm license includes:
+
+- 1 year free premium support and updates
+- 1 free installation service
+- You can use this product on 3 domains at the same time for your own purpose or for the same client
+- You can use this product without a limit of time
+
+- You cannot directly license, sub-license, sell, resell, swap this product for other products
+- You cannot install the product on more than one client.
+- You cannot extract components or reverse engineer
+- You cannot resell this product as yours
+- You cannot change the name of this product
+- You cannot sell or resell the product online
+- You cannot claim the part or all of the source code as yours.
